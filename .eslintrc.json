@@ -1,0 +1,23 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true,
+    "es2020": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+    },
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  }
+}

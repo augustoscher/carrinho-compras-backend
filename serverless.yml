@@ -1,0 +1,85 @@
+service: carrinho-compras-backend
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  environment:
+    ORDERS_TABLE: Orders
+    PRODUCTS_TABLE: Products
+    LOCALSTACK_HOST: ${env:LOCALSTACK_HOST, "localhost"}
+    DYNAMODB_PORT: ${env:DYNAMODB_PORT, "4569"}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:Scan
+        - dynamodb:Query
+        - dynamodb:DescribeTable
+      Resource:  
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.ORDERS_TABLE}"
+        - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.PRODUCTS_TABLE}"
+package:
+  excludeDevDependencies: true
+  individually: true
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+
+custom:
+  dynamodb:
+    stages:
+      - ${self:provider.stage}
+    start:
+      host: ${self:provider.environment.LOCALSTACK_HOST}
+      port: ${self:provider.environment.DYNAMODB_PORT}
+      migrate: true
+      noStart: true
+      seed: true
+    seed:
+      orders:
+        sources:
+          - table: ${self:provider.environment.ORDERS_TABLE}
+            sources: [ './seed/orders.json' ]
+      products:
+        sources:
+          - table: ${self:provider.environment.PRODUCTS_TABLE}
+            sources: [ './seed/products.json' ]
+
+functions:
+  graphql:
+    handler: handler.handler
+    events:
+      - http:
+          path: graphql
+          method: any
+
+resources:
+  Resources:
+    Orders:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.ORDERS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    Products:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.PRODUCTS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

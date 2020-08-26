@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "name": "P1",
+    "photo": "https://images-submarino.b2w.io/produtos/01/00/img/1618005/9/1618005997_1SZ.jpg",
+    "price": 10.99,
+    "stock": 10
+  },
+  {
+    "id": "2",
+    "name": "P2",
+    "photo": "https://images-submarino.b2w.io/produtos/01/00/img/1618005/9/1618005997_1SZ.jpg",
+    "price": 15.69,
+    "stock": 2
+  }
+]
