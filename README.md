@@ -1,6 +1,6 @@
 # carrinho-compras-backend
 
-An Serverless GraphQL Backend
+A Serverless GraphQL Backend
 
 ## Requirements
 
@@ -24,3 +24,5 @@ make run
 ```
 
 When the setup is ready, you'll be able to use graphql playground. <http://localhost:3000/dev/graphql>
+
+Done.
