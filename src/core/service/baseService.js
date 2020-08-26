@@ -13,6 +13,10 @@ class BaseService {
     });
   }
 
+  async update(item) {
+    return this.repository.update(item);
+  }
+
   async findOne(id) {
     return this.repository.findOne(id);
   }

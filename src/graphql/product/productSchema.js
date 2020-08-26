@@ -19,8 +19,16 @@ const typeDefinition = `
     createProduct(
       name: String!
       photo: String!
-      price: Int!
+      price: Float!
       stock: Int!
+    ): String
+
+    updateProduct(
+      id: String!
+      name: String
+      photo: String
+      price: Float
+      stock: Int
     ): String
   }
 `

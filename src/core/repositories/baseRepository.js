@@ -11,11 +11,17 @@ class BaseRepository {
     return promisify(this.schema.create)(item)
   }
 
+  async update(item) {
+    const { id } = item;
+    delete item.id;
+    return promisify(this.schema.update)({ id }, { ...item })
+  }
+
   //dynamodb query: used when we have the key (id)
   async findOne(id) {
     return promisify(this.schema.query)({ id: { eq: id } })
   }
-  
+
   //dynamodb scan: used when we dont have the key or we dont know the data
   async findAll(query) {
     return promisify(this.schema.scan)(query)
