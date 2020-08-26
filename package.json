@@ -2,7 +2,7 @@
   "name": "carrinho-compras-backend",
   "version": "1.0.0",
   "description": "Serverless GraphQL Backend",
-  "main": "handler.js",
+  "main": "src/handler.js",
   "scripts": {
     "start": "IS_LOCAL=true npx nodemon --exec sls offline start --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,13 +21,16 @@
   "devDependencies": {
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "serverless": "^1.79.0",
     "serverless-dynamodb-local": "^0.2.39",
+    "serverless-mocha-plugin": "^1.12.0",
     "serverless-offline": "^6.5.0"
   },
   "dependencies": {
     "apollo-server-lambda": "^2.16.1",
+    "aws-sdk": "^2.739.0",
     "dynamoose": "^1.11.1"
   }
 }

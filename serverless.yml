@@ -3,11 +3,13 @@ service: carrinho-compras-backend
 provider:
   name: aws
   runtime: nodejs12.x
+  region: us-east-1
   environment:
     ORDERS_TABLE: Orders
     PRODUCTS_TABLE: Products
     LOCALSTACK_HOST: ${env:LOCALSTACK_HOST, "localhost"}
     DYNAMODB_PORT: ${env:DYNAMODB_PORT, "4569"}
+    REGION: ${self:provider.region}
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -16,7 +18,7 @@ provider:
         - dynamodb:Scan
         - dynamodb:Query
         - dynamodb:DescribeTable
-      Resource:  
+      Resource:
         - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.ORDERS_TABLE}"
         - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.PRODUCTS_TABLE}"
 package:
@@ -26,6 +28,7 @@ package:
 plugins:
   - serverless-dynamodb-local
   - serverless-offline
+  - serverless-mocha-plugin
 
 custom:
   dynamodb:
@@ -49,7 +52,7 @@ custom:
 
 functions:
   graphql:
-    handler: handler.handler
+    handler: src/handler.handler
     events:
       - http:
           path: graphql

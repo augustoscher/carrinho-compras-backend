@@ -1,4 +1,4 @@
-.PHONY: help run stop rebuild
+.PHONY: help run stop rebuild test
 
 .DEFAULT: help
 help:
@@ -22,3 +22,6 @@ rebuild: stop  ## rebuild and start the application
 	docker-compose up -d --build
 	npm run start
 	@echo "Backend running on http://localhost:3000/dev/graphql"
+
+test:  ## run tests
+	sls invoke test

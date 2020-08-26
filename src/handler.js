@@ -2,14 +2,14 @@
 
 const { ApolloServer, gql } = require('apollo-server-lambda');
 
-const setupDynamoDBClient = require('./src/core/util/setupDynamoDB');
+const setupDynamoDBClient = require('./core/util/setupDynamoDB');
 setupDynamoDBClient();
 
-const OrderFactory = require('./src/core/factories/orderFactory');
-const ProductFactory = require('./src/core/factories/productFactory');
+const OrderFactory = require('./core/factories/orderFactory');
+const ProductFactory = require('./core/factories/productFactory');
 
 const isLocal = process.env.IS_LOCAL;
-const schema = require('./src/graphql')
+const schema = require('./graphql')
 
 const server = new ApolloServer({
   schema,
