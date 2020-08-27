@@ -1,4 +1,4 @@
 module.exports = {
   schema: require('./productSchema'),
-  resolvers: require('./productResolvers')
+  resolvers: require('./productResolvers'),
 };

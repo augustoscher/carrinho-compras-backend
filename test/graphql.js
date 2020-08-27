@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 'use strict';
 
 // tests for graphql
@@ -12,21 +13,21 @@ let defaultEvent = {
   path: '/dev/graphql',
   body: {},
   headers: {
-    'Content-Type': 'application/json'
-  }
+    'Content-Type': 'application/json',
+  },
 };
 
 describe('graphql', () => {
-  before((done) => {
+  before(done => {
     done();
   });
 
   describe('.order', () => {
     it('endpoint works', async () => {
-
       const event = {
         ...defaultEvent,
-        body: "{\"query\":\"query {\\n  getOrder {id, customer, total}\\n    }\",\"variables\":{},\"operationName\":null}"
+        body:
+          '{"query":"query {\\n  getOrder {id, customer, total}\\n    }","variables":{},"operationName":null}',
       };
 
       const response = await wrapped.run(event);
@@ -37,10 +38,10 @@ describe('graphql', () => {
 
   describe('.product', () => {
     it('endpoint works', async () => {
-
       const event = {
         ...defaultEvent,
-        body: "{\"query\":\"query {\\n  getProduct {id, name, photo, price, stock}\\n    }\",\"variables\":{},\"operationName\":null}"
+        body:
+          '{"query":"query {\\n  getProduct {id, name, photo, price, stock}\\n    }","variables":{},"operationName":null}',
       };
 
       const response = await wrapped.run(event);

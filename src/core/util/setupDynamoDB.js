@@ -1,7 +1,7 @@
 const dynamoose = require('dynamoose');
 
 function setupDynamoDBClient() {
-  if (!process.env.IS_LOCAL){
+  if (!process.env.IS_LOCAL) {
     return;
   }
 
@@ -10,7 +10,7 @@ function setupDynamoDBClient() {
   const region = process.env.REGION;
 
   dynamoose.AWS.config.update({ region });
-  dynamoose.local(`http://${host}:${port}`)
+  dynamoose.local(`http://${host}:${port}`);
   console.log('running dynamodb locally', host, port);
 }
 

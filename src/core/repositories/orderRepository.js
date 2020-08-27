@@ -3,7 +3,7 @@ const schema = require('./schema/orderSchema');
 
 class OrderRepository extends BaseRepository {
   constructor() {
-    super({ schema })
+    super({ schema });
   }
 }
 

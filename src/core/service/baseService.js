@@ -9,7 +9,7 @@ class BaseService {
     const id = uuid();
     return this.repository.create({
       ...item,
-      id
+      id,
     });
   }
 

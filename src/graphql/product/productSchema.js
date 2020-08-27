@@ -31,6 +31,6 @@ const typeDefinition = `
       stock: Int
     ): String
   }
-`
+`;
 
 module.exports = typeDefinition;

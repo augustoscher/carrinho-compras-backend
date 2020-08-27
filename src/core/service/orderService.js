@@ -2,7 +2,7 @@ const BaseService = require('./baseService');
 
 class OrderService extends BaseService {
   constructor(repository) {
-    super({ repository })
+    super({ repository });
   }
 }
 

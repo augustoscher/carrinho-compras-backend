@@ -5,24 +5,24 @@ const schema = new Schema({
   id: {
     type: String,
     required: true,
-    hashKey: true
+    hashKey: true,
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
   photo: {
     type: String,
-    required: false
+    required: false,
   },
   price: {
     type: Number,
-    required: true
+    required: true,
   },
   stock: {
     type: Number,
-    required: true
-  }
+    required: true,
+  },
 });
 
 const model = dynamoose.model(process.env.PRODUCTS_TABLE, schema);
