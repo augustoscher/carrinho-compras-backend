@@ -3,6 +3,7 @@
     "id": "1",
     "customer": "Augusto",
     "total": 100.99,
+    "creditCard": "02390293480232394",
     "products": [
       {
         "id": "1",

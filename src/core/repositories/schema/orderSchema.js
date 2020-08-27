@@ -5,15 +5,19 @@ const schema = new Schema({
   id: {
     type: String,
     required: true,
-    hashKey: true
+    hashKey: true,
   },
   customer: {
     type: String,
-    required: false
+    required: false,
+  },
+  creditCard: {
+    type: String,
+    required: true,
   },
   total: {
     type: Number,
-    required: true
+    required: true,
   },
   products: [
     {
@@ -23,18 +27,18 @@ const schema = new Schema({
       },
       name: {
         type: String,
-        required: true
+        required: true,
       },
       photo: {
         type: String,
-        required: false
+        required: false,
       },
       price: {
         type: Number,
-        required: true
+        required: true,
       },
     },
-  ]
+  ],
 });
 
 const model = dynamoose.model(process.env.ORDERS_TABLE, schema);

@@ -9,6 +9,7 @@ const typeDefinition = `
   type Order {
     id: String
     customer: String
+    creditCard: String
     total: Float
     products (id: String): [Product]
   }
@@ -23,10 +24,11 @@ const typeDefinition = `
   type Mutation {
     createOrder(
       customer: String!
+      creditCard: String!
       total: Float!
       products: [String]!
     ): String
   }
-`
+`;
 
 module.exports = typeDefinition;
