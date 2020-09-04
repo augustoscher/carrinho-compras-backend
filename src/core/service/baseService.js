@@ -1,4 +1,4 @@
-const uuid = require('uuid/v1');
+const { v4 } = require('uuid');
 
 class BaseService {
   constructor({ repository }) {
@@ -6,9 +6,9 @@ class BaseService {
   }
 
   async create(item) {
-    const id = uuid();
+    const id = v4();
     return this.repository.create({
-      ...item,
+      ...item.input,
       id,
     });
   }

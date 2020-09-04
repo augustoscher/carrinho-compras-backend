@@ -15,21 +15,16 @@ const typeDefinition = `
     ): [Product]
   }
 
-  type Mutation {
-    createProduct(
-      name: String!
-      photo: String!
-      price: Float!
-      stock: Int!
-    ): String
+  input ProductInput {
+    name: String!
+    photo: String!
+    price: Float!
+    stock: Int!
+  }
 
-    updateProduct(
-      id: String!
-      name: String
-      photo: String
-      price: Float
-      stock: Int
-    ): String
+  type Mutation {
+    createProduct(input: ProductInput): String
+    updateProduct(input: ProductInput): String
   }
 `;
 

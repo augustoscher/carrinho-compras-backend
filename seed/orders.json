@@ -2,20 +2,24 @@
   {
     "id": "1",
     "customer": "Augusto",
-    "total": 100.99,
+    "total": 42.37,
     "creditCard": "02390293480232394",
     "products": [
       {
         "id": "1",
         "name": "P1",
         "photo": "https://images-submarino.b2w.io/produtos/01/00/img/1618005/9/1618005997_1SZ.jpg",
-        "price": 10.99
+        "price": 10.99,
+        "total": 10.99,
+        "qtd": 1
       },
       {
         "id": "2",
         "name": "P2",
         "photo": "https://images-submarino.b2w.io/produtos/01/00/img/1618005/9/1618005997_1SZ.jpg",
-        "price": 15.69
+        "price": 15.69,
+        "total": 31.38,
+        "qtd": 2
       }
     ]
   }

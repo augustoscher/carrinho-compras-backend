@@ -1,15 +1,15 @@
-const { readdirSync } = require("fs");
+const { readdirSync } = require('fs');
 const {
   makeExecutableSchema,
   mergeSchemas,
   gql,
-} = require("apollo-server-lambda");
+} = require('apollo-server-lambda');
 
 const schemas = readdirSync(__dirname)
   //lê o diretóiro e descartando este arquivo.
-  .filter((file) => file !== "index.js")
+  .filter(file => file !== 'index.js')
   //faz o require de cada arquivo index.js
-  .map((folder) => require(`./${folder}`))
+  .map(folder => require(`./${folder}`))
   //usando o que é retornado de cada index, cria um Schema GraphQL junstando schema e resolver
   .map(({ schema, resolvers }) =>
     makeExecutableSchema({
@@ -20,5 +20,5 @@ const schemas = readdirSync(__dirname)
   );
 
 module.exports = mergeSchemas({
-  schemas
+  schemas,
 });

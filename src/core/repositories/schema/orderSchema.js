@@ -37,6 +37,14 @@ const schema = new Schema({
         type: Number,
         required: true,
       },
+      total: {
+        type: Number,
+        required: true,
+      },
+      qtd: {
+        type: Number,
+        required: true,
+      },
     },
   ],
 });

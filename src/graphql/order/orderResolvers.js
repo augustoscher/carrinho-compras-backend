@@ -7,8 +7,12 @@ const resolvers = {
   },
   Mutation: {
     async createOrder(root, args, context, info) {
-      const { id } = await context.Order.create(args);
-      return id;
+      const stockOk = await context.Product.validateStock(args.input.products);
+      if (stockOk) {
+        const { id } = await context.Order.create(args);
+        return id;
+      }
+      return 'Unavaiable stock';
     },
   },
 };

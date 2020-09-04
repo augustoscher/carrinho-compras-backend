@@ -1,9 +1,11 @@
 const typeDefinition = `
-  type Product {
+  type OrderProduct {
     id: String
     name: String
     photo: String
     price: Float
+    total: Float
+    qtd: Int
   }
 
   type Order {
@@ -11,7 +13,7 @@ const typeDefinition = `
     customer: String
     creditCard: String
     total: Float
-    products (id: String): [Product]
+    products: [OrderProduct]
   }
 
   type Query {
@@ -21,13 +23,25 @@ const typeDefinition = `
     ): [Order]
   }
 
+
+  input OrderProductInput {
+    id: String!
+    name: String!
+    photo: String!
+    price: Float!
+    total: Float!
+    qtd: Int!
+  }
+
+  input OrderInput {
+    customer: String!
+    creditCard: String!
+    total: Float!
+    products: [OrderProductInput]!
+  }
+
   type Mutation {
-    createOrder(
-      customer: String!
-      creditCard: String!
-      total: Float!
-      products: [String]!
-    ): String
+    createOrder(input: OrderInput): String
   }
 `;
 
