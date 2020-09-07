@@ -18,13 +18,14 @@ class ProductRepository extends BaseRepository {
     const stocks = await Promise.all(findStockPromise);
     const unavaiable = stocks.filter(item => item.stock < 0);
 
-    if (!unavaiable.length > 0) {
-      stocks.forEach(async item => {
-        await this.update(item);
-      });
-      return true;
+    if (unavaiable.length > 0) {
+      return unavaiable;
     }
-    return false;
+
+    stocks.forEach(async item => {
+      await this.update(item);
+    });
+    return [];
   }
 }
 
