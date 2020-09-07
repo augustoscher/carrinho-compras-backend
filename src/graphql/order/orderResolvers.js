@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const { UserInputError } = require('apollo-server-lambda');
+const { ApolloError } = require('apollo-server-lambda');
 
 const resolvers = {
   Query: {
@@ -15,12 +15,10 @@ const resolvers = {
 
       console.log('unavaiableStocks', unavaiableStocks);
       if (unavaiableStocks.length > 0) {
-        console.log('stock unavaiable');
-        throw new UserInputError('Unavaiable stock', {
+        throw new ApolloError('Unavaiable stock', '409', {
           products: unavaiableStocks,
         });
       }
-      console.log('stcok ok');
       const { id } = await context.Order.create(args);
       return id;
     },
