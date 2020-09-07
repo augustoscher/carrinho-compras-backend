@@ -7,7 +7,9 @@ const resolvers = {
   },
   Mutation: {
     async createOrder(root, args, context, info) {
-      const stockOk = await context.Product.validateStock(args.input.products);
+      const stockOk = await context.Product.validateAndUpdateStock(
+        args.input.products
+      );
       if (stockOk) {
         const { id } = await context.Order.create(args);
         return id;

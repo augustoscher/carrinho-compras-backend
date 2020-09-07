@@ -6,22 +6,25 @@ class ProductRepository extends BaseRepository {
     super({ schema });
   }
 
-  async validateStock(products) {
-    const promise = products.map(async p => {
+  async validateAndUpdateStock(products) {
+    const findStockPromise = products.map(async p => {
       const [{ stock }] = await this.findOne(p.id);
       return {
-        id: p.id,
+        ...p,
         stock: stock - p.qtd,
       };
     });
 
-    const stocks = await Promise.all(promise);
-    console.log('stocks: ', stocks);
-    const unavaiableStock = stocks.filter(item => item.stock <= 0);
-    if (unavaiableStock.length > 0) {
-      return false;
+    const stocks = await Promise.all(findStockPromise);
+    const unavaiable = stocks.filter(item => item.stock < 0);
+
+    if (!unavaiable.length > 0) {
+      stocks.forEach(async item => {
+        await this.update(item);
+      });
+      return true;
     }
-    return true;
+    return false;
   }
 }
 

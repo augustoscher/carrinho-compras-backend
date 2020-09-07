@@ -5,8 +5,8 @@ class ProductService extends BaseService {
     super({ repository });
   }
 
-  async validateStock(products) {
-    this.repository.validateStock(products);
+  async validateAndUpdateStock(products) {
+    return this.repository.validateAndUpdateStock(products);
   }
 }
 
