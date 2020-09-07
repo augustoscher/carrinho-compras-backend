@@ -9,11 +9,15 @@ const resolvers = {
   },
   Mutation: {
     async createOrder(root, args, context, info) {
+      const validPayment = await context.Order.validatePayment(args.input);
+      if (!validPayment) {
+        throw new ApolloError('Unauthorized Payment', '409');
+      }
+
       const unavaiableStocks = await context.Product.validateAndUpdateStock(
         args.input.products
       );
 
-      console.log('unavaiableStocks', unavaiableStocks);
       if (unavaiableStocks.length > 0) {
         throw new ApolloError('Unavaiable stock', '409', {
           products: unavaiableStocks,
